@@ -2,8 +2,48 @@ import Sidebar from "../component/sidebar";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import StatusCard from "../component/statuscard";
+import { FaTruck, FaBoxes, FaUsers } from "react-icons/fa";
+import { useState, useEffect } from "react";
 
 export default function Dashboard() {
+  const [currentStatusSet, setCurrentStatusSet] = useState(0);
+  
+  // Define the status sets that will cycle
+  const statusSets = [
+    // First set: HADIR and IZIN
+    {
+      delivery: [
+        { title: "HADIR", count: 0, titleColor: "#4CAF50" },
+        { title: "IZIN", count: 0, titleColor: "#2196F3" }
+      ],
+      logistic: [
+        { title: "HADIR", count: 0, titleColor: "#4CAF50" },
+        { title: "IZIN", count: 0, titleColor: "#2196F3" }
+      ]
+    },
+    // Second set: SAKIT and CUTI
+    {
+      delivery: [
+        { title: "SAKIT", count: 0, titleColor: "#FFC107" },
+        { title: "CUTI", count: 0, titleColor: "#9C27B0" }
+      ],
+      logistic: [
+        { title: "SAKIT", count: 0, titleColor: "#FFC107" },
+        { title: "CUTI", count: 0, titleColor: "#9C27B0" }
+      ]
+    }
+  ];
+
+  // Animation effect to cycle through status sets
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentStatusSet(prev => (prev + 1) % statusSets.length);
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -16,9 +56,9 @@ export default function Dashboard() {
     cssEase: 'linear',
     arrows: false,
     dotsClass: "slick-dots custom-dots",
-    customPaging: function(i) {
+    customPaging: function() {
       return (
-        <div className="w-2 h-2 bg-gray-300 rounded-full transition-all duration-300 hover:bg-[#006F35]"></div>
+        <div className="dot-item"></div>
       );
     },
   };
@@ -36,47 +76,65 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Image Slider - Left */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-            <Slider {...settings}>
-              <div>
-                <img 
-                  src="/slide1.jpeg" 
-                  alt="Slide 1" 
-                  className="w-full h-64 object-cover" 
-                />
-              </div>
-              <div>
-                <img 
-                  src="/slide2.jpeg" 
-                  alt="Slide 2" 
-                  className="w-full h-64 object-cover" 
-                />
-              </div>
-            </Slider>
+            <div className="w-full max-w-[733px] h-[390px] mx-auto">
+              <Slider {...settings}>
+                <div className="relative h-full">
+                  <img 
+                    src="/slide1.jpeg" 
+                    alt="Slide 1" 
+                    className="w-full h-full object-cover" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+                <div className="relative h-full">
+                  <img 
+                    src="/slide2.jpeg" 
+                    alt="Slide 2" 
+                    className="w-full h-full object-cover" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+              </Slider>
+            </div>
           </div>
 
-          {/* Absence Container - Right */}
-          <div className="space-y-4">
-            <h2 className="text-lg font-semibold text-gray-800">Delivery</h2>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center">
-                <div className="text-sm text-green-600 font-medium mb-2">HADIR</div>
-                <div className="text-4xl font-bold text-gray-800">0</div>
+          {/* Attendance Container - Right */}
+          <div className="flex justify-center items-center">
+            <div className="space-y-4">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                  <FaTruck className="text-2xl text-[#E05F14]" />
+                  <h2 className="text-2xl font-bold text-gray-800 bg-gradient-to-r from-[#E05F14] to-[#FF6B2B] bg-clip-text text-transparent">
+                    Delivery
+                  </h2>
+                </div>
+              <div className="grid grid-cols-2 gap-4 transition-all duration-500 ease-in-out">
+                {statusSets[currentStatusSet].delivery.map((status, index) => (
+                  <div key={`delivery-${index}`} className="animate-fadeIn">
+                    <StatusCard 
+                      title={status.title} 
+                      count={status.count} 
+                      titleColor={status.titleColor} 
+                    />
+                  </div>
+                ))}
               </div>
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center">
-                <div className="text-sm text-yellow-600 font-medium mb-2">SAKIT</div>
-                <div className="text-4xl font-bold text-gray-800">0</div>
-              </div>
-            </div>
-            
-            <h2 className="text-lg font-semibold text-gray-800 pt-4">Logistic</h2>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center">
-                <div className="text-sm text-green-600 font-medium mb-2">HADIR</div>
-                <div className="text-4xl font-bold text-gray-800">0</div>
-              </div>
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center">
-                <div className="text-sm text-yellow-600 font-medium mb-2">SAKIT</div>
-                <div className="text-4xl font-bold text-gray-800">0</div>
+
+              <div className="flex items-center justify-center gap-3 mb-6">
+                  <FaBoxes className="text-2xl text-[#E05F14]" />
+                  <h2 className="text-2xl font-bold text-gray-800 bg-gradient-to-r from-[#E05F14] to-[#FF6B2B] bg-clip-text text-transparent">
+                    Logistic
+                  </h2>
+                </div>
+              <div className="grid grid-cols-2 gap-4 transition-all duration-500 ease-in-out">
+                {statusSets[currentStatusSet].logistic.map((status, index) => (
+                  <div key={`logistic-${index}`} className="animate-fadeIn">
+                    <StatusCard 
+                      title={status.title} 
+                      count={status.count} 
+                      titleColor={status.titleColor} 
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -85,7 +143,7 @@ export default function Dashboard() {
         {/* Skill Map Section */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-orange-400 to-orange-500 text-white px-6 py-4">
+          <div className="bg-[#E67F43] text-white px-6 py-4">
             <h2 className="text-lg font-semibold text-center">SKILL MAP</h2>
           </div>
 
@@ -148,28 +206,82 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Custom CSS for slider styling */}
-      <style jsx>{`
+      {/* Custom CSS for slider styling and animations */}
+      <style>{`
         .custom-dots {
-          bottom: 10px !important;
+          bottom: 20px !important;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
         }
         
         .custom-dots li {
-          margin: 0 2px;
+          margin: 0 4px;
+          width: auto;
+          height: auto;
         }
         
-        .custom-dots li.slick-active div {
-          background-color: #006F35 !important;
-          transform: scale(1.3);
+        .custom-dots li button {
+          width: 12px !important;
+          height: 4px !important;
+          padding: 0 !important;
+          background: transparent;
+          opacity: 1;
+        }
+        
+        .custom-dots li button:before {
+          content: none !important;
+        }
+        
+        .dot-item {
+          width: 12px;
+          height: 4px;
+          background-color: rgba(255,255,255,0.5);
+          border-radius: 2px;
+          transition: all 0.3s ease;
+        }
+        
+        .custom-dots li.slick-active .dot-item {
+          background-color: #fff !important;
+          width: 24px;
+          height: 4px;
         }
         
         .slick-slider {
           position: relative;
+          height: 100%;
+          border-radius: 12px;
+          overflow: hidden;
         }
         
-        .slick-track {
-          display: flex;
-          align-items: center;
+        .slick-list, .slick-track {
+          height: 100%;
+        }
+        
+        .slick-slide > div {
+          height: 100%;
+        }
+
+        /* Fix for slick-carousel theme styles */
+        .slick-dots li button:before {
+          display: none;
+        }
+
+        /* Animation for status cards */
+        .animate-fadeIn {
+          animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
       `}</style>
     </div>
