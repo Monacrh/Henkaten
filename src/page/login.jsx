@@ -31,6 +31,11 @@ export default function Login() {
     navigate("/dashboard");
   };
 
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    navigate("/forgotpassword");
+  };
+
   return (
     <div className="flex h-screen w-full bg-[#FFFFFF]">
       {/* Left Section */}
@@ -69,32 +74,29 @@ export default function Login() {
         </div> */}
       </div>
 
-
       {/* Right Section */}
       <div className="w-1/3 flex flex-col justify-center items-center bg-[#FFE3E3] p-10 shadow-lg">
-       {/* <img
+        {/* <img
           src="logo.png"
           alt="pat-a-pet"
           className="absolute top-15 mid w-40 z-20"
         /> */}
         <h2
-            className="text-2xl font-semibold mb-6"
-            style={{ fontFamily: 'Roboto' }}
+          className="text-2xl font-semibold mb-6"
+          style={{ fontFamily: "Roboto" }}
         >
-            Welcome to <span style={{ color: '#006F35' }}>HENKATEN</span>
+          Welcome to <span style={{ color: "#006F35" }}>HENKATEN</span>
         </h2>
 
-
         <form className="w-3/4" onSubmit={handleLogin}>
-         <label className="block text-gray-700 mb-2">Username</label>
-            <input
+          <label className="block text-gray-700 mb-2">Username</label>
+          <input
             type="text"
             placeholder="Enter your username"
-            value={username} 
+            value={username}
             onChange={(e) => setUsername(e.target.value)} // Rename `setEmail` to `setUsername` if you update the state
             className="w-full px-4 py-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-            />
-
+          />
 
           <label className="block text-gray-700 mb-2">Password</label>
           <div className="relative w-full">
@@ -108,7 +110,7 @@ export default function Login() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-[20px] transform -translate-y-1/2 text-sm text-gray-600"
+              className="cursor-pointer absolute right-4 top-[20px] transform -translate-y-1/2 text-sm text-gray-600"
             >
               {showPassword ? <FiEye size={20} /> : <FiEyeOff size={20} />}
             </button>
@@ -117,27 +119,28 @@ export default function Login() {
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
           <div className="flex justify-between items-center text-sm text-gray-600 mb-6">
-            <label>
-              <input type="checkbox" className="mr-2" /> Remember Me
+            <label className="flex items-center cursor-pointer">
+              <input type="checkbox" className="mr-3 accent-[#006F35]" />{" "}
+              Remember Me
             </label>
-            <a
-              href="#"
-              className="hover:underline font-bold"
-            //   style={{ color: "#A0C878" }}
+            <button
+              onClick={handleForgotPassword}
+              className="hover:underline font-bold cursor-pointer"
+              style={{ color: "#006F35" }}
             >
               Forgot Password?
-            </a>
+            </button>
           </div>
 
-            <div className="flex justify-center">
-                <button
-                    type="submit"
-                    className="w-[260px] text-white py-2 rounded-3xl font-semibold hover:bg-[#0f6b87] transition"
-                    style={{ backgroundColor: "#E05F14" }}
-                >
-                    Login
-                </button>
-            </div>
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="cursor-pointer w-[260px] text-white py-2 rounded-3xl font-semibold hover:bg-[#0f6b87] transition"
+              style={{ backgroundColor: "#E05F14" }}
+            >
+              Login
+            </button>
+          </div>
         </form>
       </div>
     </div>

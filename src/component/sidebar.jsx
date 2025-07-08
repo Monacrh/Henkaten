@@ -1,12 +1,11 @@
 import { useState } from "react";
 import {
   FaChevronDown,
-  FaChevronUp,
   FaHome,
   FaCalendarAlt,
   FaAngleDoubleRight,
   FaTruck,
-  FaBoxes
+  FaBoxes,
 } from "react-icons/fa";
 
 const Sidebar = () => {
@@ -29,9 +28,9 @@ const Sidebar = () => {
       <ul className="space-y-3 px-4">
         {/* Dashboard */}
         <li>
-          <button 
-            className="w-full flex items-center gap-3 text-white bg-gradient-to-r from-[#E05F14] to-[#FF6B2B] hover:from-[#d44f10] hover:to-[#e55620] transition-all duration-300 py-3 px-4 font-semibold rounded-xl shadow-lg transform hover:scale-105 hover:shadow-xl"
-            style={{ fontFamily: 'Roboto' }}
+          <button
+            className="cursor-pointer w-full flex items-center gap-3 text-white bg-gradient-to-r from-[#E05F14] to-[#FF6B2B] hover:from-[#d44f10] hover:to-[#e55620] transition-all duration-300 py-3 px-4 font-semibold rounded-xl shadow-lg transform hover:scale-105 hover:shadow-xl"
+            style={{ fontFamily: "Roboto" }}
           >
             <FaHome className="text-lg" />
             Dashboard
@@ -42,31 +41,36 @@ const Sidebar = () => {
         <li>
           <button
             onClick={() => setHenkatenOpen(!henkatenOpen)}
-            className="w-full flex items-center justify-between bg-gradient-to-r from-[#E05F14] to-[#FF6B2B] text-white hover:from-[#d44f10] hover:to-[#e55620] transition-all duration-300 py-3 px-4 rounded-xl shadow-lg transform hover:scale-105 hover:shadow-xl"
+            className="cursor-pointer w-full flex items-center justify-between bg-gradient-to-r from-[#E05F14] to-[#FF6B2B] text-white hover:from-[#d44f10] hover:to-[#e55620] transition-all duration-300 py-3 px-4 rounded-xl shadow-lg transform hover:scale-105 hover:shadow-xl"
           >
-            <div className="flex items-center gap-3 font-semibold"
-              style={{ fontFamily: 'Roboto' }}
+            <div
+              className="flex items-center gap-3 font-semibold"
+              style={{ fontFamily: "Roboto" }}
             >
               <FaCalendarAlt className="text-lg" />
               Henkaten
             </div>
-            <div className={`transform transition-transform duration-300 ${henkatenOpen ? 'rotate-180' : ''}`}>
+            <div
+              className={`transform transition-transform duration-300 ${henkatenOpen ? "rotate-180" : ""}`}
+            >
               <FaChevronDown size={14} />
             </div>
           </button>
 
           {/* Dropdown Menu */}
-          <div className={`overflow-hidden transition-all duration-500 ease-in-out ${henkatenOpen ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div
+            className={`overflow-hidden transition-all duration-500 ease-in-out ${henkatenOpen ? "max-h-32 opacity-100" : "max-h-0 opacity-0"}`}
+          >
             <ul className="space-y-1 bg-gradient-to-r from-[#FDE5DC] to-[#FFE8E0] text-sm text-[#966C6C] rounded-xl mt-2 shadow-inner">
               <li>
-                <button className="w-full flex items-center gap-3 text-left hover:bg-gradient-to-r hover:from-[#FFF2EC] hover:to-[#FFF5F0] transition-all duration-300 py-3 px-4 rounded-t-xl transform hover:translate-x-2">
+                <button className="cursor-pointer w-full flex items-center gap-3 text-left hover:bg-gradient-to-r hover:from-[#FFF2EC] hover:to-[#FFF5F0] transition-all duration-300 py-3 px-4 rounded-t-xl transform hover:translate-x-2">
                   <FaAngleDoubleRight />
                   <FaTruck className="text-sm" />
                   Delivery
                 </button>
               </li>
               <li>
-                <button className="w-full flex items-center gap-3 text-left hover:bg-gradient-to-r hover:from-[#FFF2EC] hover:to-[#FFF5F0] transition-all duration-300 py-3 px-4 rounded-b-xl transform hover:translate-x-2">
+                <button className="cursor-pointer w-full flex items-center gap-3 text-left hover:bg-gradient-to-r hover:from-[#FFF2EC] hover:to-[#FFF5F0] transition-all duration-300 py-3 px-4 rounded-b-xl transform hover:translate-x-2">
                   <FaAngleDoubleRight />
                   <FaBoxes className="text-sm" />
                   Logistic
@@ -81,7 +85,6 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
 
 // import { useState } from "react";
 // import {
@@ -106,7 +109,7 @@ export default Sidebar;
 //       <ul className="space-y-4">
 //         {/* Dashboard */}
 //         <li>
-//           <button 
+//           <button
 //           className="w-full flex items-center gap-2 text-white bg-[#E05F14] hover:bg-[#d44f10] transition py-2 px-4 font-semibold "
 //           style={{ fontFamily: 'Roboto' }}
 //           >
@@ -153,3 +156,4 @@ export default Sidebar;
 // };
 
 // export default Sidebar;
+
