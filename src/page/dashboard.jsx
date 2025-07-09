@@ -74,12 +74,13 @@ export default function Dashboard() {
   }, [statusSets.length]);
 
   return (
-    <div className="flex h-screen w-full">
+    <div className="flex h-screen w-full overflow-hidden">
       {/* Sidebar with fixed width */}
       <div className="w-64 bg-white border-r border-[#006F35]">
         <Sidebar />
       </div>
       {/* Main Content Area */}
+      <div className="flex-1 overflow-y-auto">
       <div className="flex-1 p-2 bg-gray-50 flex flex-col">
         {/* Top Section - Image Slider and Absence Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-[3.5fr_1.5fr] gap-6 mb-2 flex-shrink-0">
@@ -221,6 +222,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
