@@ -80,27 +80,26 @@ export default function Dashboard() {
         <Sidebar />
       </div>
       {/* Main Content Area */}
-      <div className="flex-1 overflow-y-auto">
-      <div className="flex-1 p-2 bg-gray-50 flex flex-col">
-        {/* Top Section - Image Slider and Absence Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-[3.5fr_1.5fr] gap-6 mb-2 flex-shrink-0">
-          {/* Image Slider - Left */}
-          <div className="bg-white p-2 rounded-xl shadow-sm border flex items-center border-gray-200 overflow-hidden">
-            <div className="w-full max-w-2xl mx-auto ">
-              <ImageSlider images={sliderImages} />
+      <div className="flex-1 px-2 overflow-y-auto">
+        <div className="flex-1 bg-gray-50 flex flex-col">
+          {/* Top Section - Image Slider and Absence Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-[3.5fr_1.5fr] gap-6 mb-2 flex-shrink-0">
+            {/* Image Slider - Left */}
+            <div className="bg-white p-2 rounded-xl shadow-sm border flex items-center border-gray-200 overflow-hidden">
+              <div className="w-full max-w-2xl mx-auto ">
+                <ImageSlider images={sliderImages} />
+              </div>
             </div>
-          </div>
 
-          {/* Attendance Container - Right */}
-          <div className="flex justify-center items-center">
-            <div className="space-y-4">
+            {/* Attendance Container - Right */}
+            <div className="flex flex-col justify-center items-center">
               <div className="flex items-center justify-center gap-3 mb-6">
                 <FaTruck className="text-2xl text-[#E05F14]" />
                 <h2 className="text-2xl font-bold text-gray-800 bg-gradient-to-r from-[#E05F14] to-[#FF6B2B] bg-clip-text ">
                   Delivery
                 </h2>
               </div>
-              <div className="grid grid-cols-2 gap-4 transition-all duration-500 ease-in-out">
+              <div className="grid w-full grid-cols-2 gap-4 transition-all duration-500 ease-in-out">
                 {statusSets[currentStatusSet].delivery.map((status, index) => (
                   <div
                     key={`delivery-${index}`}
@@ -125,7 +124,7 @@ export default function Dashboard() {
                   Logistic
                 </h2>
               </div>
-              <div className="grid grid-cols-2 gap-4 transition-all duration-500 ease-in-out">
+              <div className="grid w-full grid-cols-2 gap-4 transition-all duration-500 ease-in-out">
                 {statusSets[currentStatusSet].logistic.map((status, index) => (
                   <div
                     key={`logistic-${index}`}
@@ -223,7 +222,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      </div>
     </div>
   );
 }
+

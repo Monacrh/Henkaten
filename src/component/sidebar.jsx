@@ -13,7 +13,6 @@ const Sidebar = () => {
   const [henkatenOpen, setHenkatenOpen] = useState(true);
   const navigate = useNavigate();
 
-
   return (
     <div className="w-64 min-h-screen bg-gradient-to-b from-white to-gray-50 text-[#006F35] border-r-4 border-[#006F35] shadow-lg">
       {/* Logo Section */}
@@ -67,21 +66,27 @@ const Sidebar = () => {
           >
             <ul className="space-y-1 bg-gradient-to-r from-[#FDE5DC] to-[#FFE8E0] text-sm text-[#966C6C] rounded-xl mt-2 shadow-inner">
               <li>
-                <button 
-                onClick={() => navigate("/deliverydash")}
-                className="cursor-pointer w-full flex items-center gap-3 text-left hover:bg-gradient-to-r hover:from-[#FFF2EC] hover:to-[#FFF5F0] transition-all duration-300 py-3 px-4 rounded-t-xl transform hover:translate-x-2">
-                  <FaAngleDoubleRight />
-                  <FaTruck className="text-sm" />
-                  Delivery
+                <button className="hover:bg-gradient-to-r hover:from-[#FFF2EC] hover:to-[#FFF5F0]  duration-300 w-full transform ">
+                  <button
+                    onClick={() => navigate("/deliverydash")}
+                    className="cursor-pointer w-full flex items-center gap-3 text-left  py-3 px-4 rounded-t-xl transition-all transform hover:translate-x-2"
+                  >
+                    <FaAngleDoubleRight />
+                    <FaTruck className="text-sm" />
+                    Delivery
+                  </button>
                 </button>
               </li>
               <li>
-                <button 
-                onClick={() => navigate("/logisticdash")}
-                className="cursor-pointer w-full flex items-center gap-3 text-left hover:bg-gradient-to-r hover:from-[#FFF2EC] hover:to-[#FFF5F0] transition-all duration-300 py-3 px-4 rounded-b-xl transform hover:translate-x-2">
-                  <FaAngleDoubleRight />
-                  <FaBoxes className="text-sm" />
-                  Logistic
+                <button className="hover:bg-gradient-to-r hover:from-[#FFF2EC] hover:to-[#FFF5F0]  duration-300 w-full transform ">
+                  <button
+                    onClick={() => navigate("/logisticdash")}
+                    className="cursor-pointer w-full flex items-center gap-3 text-left  py-3 px-4 rounded-t-xl transition-all transform hover:translate-x-2"
+                  >
+                    <FaAngleDoubleRight />
+                    <FaBoxes className="text-sm" />
+                    Logistic
+                  </button>
                 </button>
               </li>
             </ul>
@@ -164,4 +169,3 @@ export default Sidebar;
 // };
 
 // export default Sidebar;
-
