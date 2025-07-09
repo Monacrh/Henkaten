@@ -7,9 +7,12 @@ import {
   FaTruck,
   FaBoxes,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const [henkatenOpen, setHenkatenOpen] = useState(true);
+  const navigate = useNavigate();
+
 
   return (
     <div className="w-64 min-h-screen bg-gradient-to-b from-white to-gray-50 text-[#006F35] border-r-4 border-[#006F35] shadow-lg">
@@ -29,6 +32,7 @@ const Sidebar = () => {
         {/* Dashboard */}
         <li>
           <button
+            onClick={() => navigate("/dashboard")}
             className="cursor-pointer w-full flex items-center gap-3 text-white bg-gradient-to-r from-[#E05F14] to-[#FF6B2B] hover:from-[#d44f10] hover:to-[#e55620] transition-all duration-300 py-3 px-4 font-semibold rounded-xl shadow-lg transform hover:scale-105 hover:shadow-xl"
             style={{ fontFamily: "Roboto" }}
           >
@@ -63,14 +67,18 @@ const Sidebar = () => {
           >
             <ul className="space-y-1 bg-gradient-to-r from-[#FDE5DC] to-[#FFE8E0] text-sm text-[#966C6C] rounded-xl mt-2 shadow-inner">
               <li>
-                <button className="cursor-pointer w-full flex items-center gap-3 text-left hover:bg-gradient-to-r hover:from-[#FFF2EC] hover:to-[#FFF5F0] transition-all duration-300 py-3 px-4 rounded-t-xl transform hover:translate-x-2">
+                <button 
+                onClick={() => navigate("/deliverydash")}
+                className="cursor-pointer w-full flex items-center gap-3 text-left hover:bg-gradient-to-r hover:from-[#FFF2EC] hover:to-[#FFF5F0] transition-all duration-300 py-3 px-4 rounded-t-xl transform hover:translate-x-2">
                   <FaAngleDoubleRight />
                   <FaTruck className="text-sm" />
                   Delivery
                 </button>
               </li>
               <li>
-                <button className="cursor-pointer w-full flex items-center gap-3 text-left hover:bg-gradient-to-r hover:from-[#FFF2EC] hover:to-[#FFF5F0] transition-all duration-300 py-3 px-4 rounded-b-xl transform hover:translate-x-2">
+                <button 
+                onClick={() => navigate("/logisticdash")}
+                className="cursor-pointer w-full flex items-center gap-3 text-left hover:bg-gradient-to-r hover:from-[#FFF2EC] hover:to-[#FFF5F0] transition-all duration-300 py-3 px-4 rounded-b-xl transform hover:translate-x-2">
                   <FaAngleDoubleRight />
                   <FaBoxes className="text-sm" />
                   Logistic
